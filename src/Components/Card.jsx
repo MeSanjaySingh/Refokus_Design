@@ -1,17 +1,24 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
-const Card = ({ width, start, para, hover }) => {
+const Card = ({ width, start, para, hover = "false" }) => {
   return (
-    <div
-      className={`bg-zinc-800 p-5 rounded-2xl flex flex-col cursor-pointer select-none justify-between ${width} hover:${hover}  min-h-[27rem]`}
+    <motion.div
+      whileHover={{
+        backgroundColor: hover === "true" && "#7443ff",
+        padding: "25px",
+      }}
+      className={`bg-zinc-800 p-5 rounded-2xl flex flex-col cursor-pointer select-none justify-between ${width}   min-h-[27rem]`}
     >
       <div className="w-full">
         <div className="w-full flex justify-between items-center">
-          <h3>One Heading</h3>
+          <h3>Get in Touch</h3>
           <IoIosArrowRoundForward size={25} />
         </div>
-        <h1 className="text-3xl font-medium mt-5">Hello world!!!</h1>
+        <h1 className="text-3xl font-medium mt-5">
+          Let’s get to it, together.
+        </h1>
       </div>
       <div className="bottom w-full ">
         {start && (
@@ -30,7 +37,7 @@ const Card = ({ width, start, para, hover }) => {
           </p>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

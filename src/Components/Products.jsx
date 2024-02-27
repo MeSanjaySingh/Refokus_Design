@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Product from "./Product";
+import { motion } from "framer-motion";
+import video1 from "../assets/1.webm";
+import video2 from "../assets/2.webm";
+import video3 from "../assets/3.mp4";
+import video4 from "../assets/4.webm";
+import video5 from "../assets/5.webm";
 
 const Products = () => {
   var products = [
@@ -39,11 +45,61 @@ const Products = () => {
       case: true,
     },
   ];
+
+  const [position, setPosition] = useState(0);
+  const hover = (val) => {
+    setPosition(val * 22);
+  };
+
   return (
-    <div className="mt-20">
+    <div className="mt-20 relative">
       {products.map((val, index) => (
-        <Product val={val} />
+        <Product key={index} val={val} hover={hover} count={index} />
       ))}
+      <div className="absolute top-0 pointer-events-none w-full h-full">
+        <motion.div
+          initial={{ y: position, x: "-50%" }}
+          animate={{ y: position + `rem` }}
+          transition={{ ease: [0.76, 0, 0.24, 1], duration: 0.6 }}
+          className="window absolute w-[32rem] h-[22rem] left-[44%] rounded-md -translate-x-[50%] overflow-hidden"
+        >
+          <motion.div
+            animate={{ y: -position + `rem` }}
+            transition={{ ease: [0.76, 0, 0.24, 1], duration: 0.5 }}
+            className=" w-full h-full rounded-lg "
+          >
+            <video autoPlay muted src={video1}></video>
+          </motion.div>
+          <motion.div
+            animate={{ y: -position + `rem` }}
+            transition={{ ease: [0.76, 0, 0.24, 1], duration: 0.5 }}
+            className=" w-full h-full "
+          >
+            <video autoPlay muted src={video2}></video>
+          </motion.div>
+          <motion.div
+            animate={{ y: -position + `rem` }}
+            transition={{ ease: [0.76, 0, 0.24, 1], duration: 0.5 }}
+            className=" w-full h-full "
+          >
+            <video autoPlay muted src={video3}></video>
+          </motion.div>
+          <motion.div
+            animate={{ y: -position + `rem` }}
+            transition={{ ease: [0.76, 0, 0.24, 1], duration: 0.5 }}
+            className=" w-full h-full"
+          >
+            <video autoPlay muted src={video4}></video>
+          </motion.div>
+          <motion.div
+            animate={{ y: -position + `rem` }}
+            transition={{ ease: [0.76, 0, 0.24, 1], duration: 0.5 }}
+            className=" w-full h-full"
+          >
+            <video autoPlay muted src={video5}></video>
+          </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 };
